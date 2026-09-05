@@ -58,7 +58,7 @@ public class MiniRedisServer {
 
             case "DEL":
                 if (parts.length != 2) return "ERR wrong number of arguments for 'del'";
-                boolean removed = store.del(parts[1]);
+                boolean removed = store.delete(parts[1]);
                 return removed ? "1" : "0";
 
             default:

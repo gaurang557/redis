@@ -1,3 +1,5 @@
+package src.main.java;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MiniRedis {
@@ -11,7 +13,7 @@ public class MiniRedis {
         return data.get(key);
     }
 
-    public boolean del(String key) {
+    public boolean delete(String key) {
         return data.remove(key) != null;
     }
 }
