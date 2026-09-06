@@ -11,10 +11,22 @@ public class MiniRedis {
     }
 
     public String get(String key) {
-        return data.get(key);
+        if(expiry.containsKey(key)){
+            Long d = expiry.get(key);
+            if(d < System.currentTimeMillis()){
+                expiry.remove(key);
+                data.remove(key);
+                return "";
+            }else{
+                return data.get(key);
+            }
+        }else{
+            return data.getOrDefault(key, "");
+        }
     }
 
     public boolean delete(String key) {
+        expiry.remove(key);
         return data.remove(key) != null;
     }
 
@@ -23,7 +35,7 @@ public class MiniRedis {
     }
 
     public String increment(String key){
-        if(!data.contains(key)){
+        if(!data.containsKey(key)){
             data.put(key, "1");
         }
         else{
@@ -34,14 +46,17 @@ public class MiniRedis {
     }
 
     public String ttl(String key){
-        if(expiry.contains(key)){
-            Long d = expiry.get(key);
-            if(d < System.currentTimeMillis()){
-                return "0 (expired)";
-            }else{
-                return Long.toString(d - System.currentTimeMillis());
+        if(data.containsKey(key)){
+            if(expiry.containsKey(key)){
+                Long d = expiry.get(key);
+                if(d < System.currentTimeMillis()){
+                    return "0 (expired)";
+                }else{
+                    return Long.toString(d - System.currentTimeMillis());
+                }
             }
+            return "Infinite";
         }
-        return "Infinite";
+        return "key does not exist";
     }
 }
