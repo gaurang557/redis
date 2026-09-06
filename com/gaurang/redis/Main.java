@@ -5,6 +5,6 @@ public class Main {
     public static void main(String[] args)
             throws Exception {
 
-        new RedisServer().start();
+        RedisServer.main(args);
     }
 }
