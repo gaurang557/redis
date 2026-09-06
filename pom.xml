@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.gaurang.redis.MiniRedisServer</mainClass>
+                            <mainClass>com.gaurang.redis.RedisServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

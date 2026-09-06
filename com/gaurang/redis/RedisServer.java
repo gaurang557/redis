@@ -127,4 +127,8 @@ public class RedisServer {
                     "ERR unknown command";
         };
     }
+
+    public static void main(String[] args) throws IOException {
+        new RedisServer().start();
+    }
 }
