@@ -1,4 +1,5 @@
-package src.main.java;
+package com.gaurang.redis;
+
 public class Main {
 
     public static void main(String[] args)

@@ -1,4 +1,5 @@
-package src.main.java;
+package com.gaurang.redis;
+// package src.main.java;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -103,16 +104,13 @@ public class RedisServer {
 
             case "EXPIRE" -> {
 
-                long seconds =
-                        Long.parseLong(parts[2]);
+                long seconds = Long.parseLong(parts[2]);
+                redis.expire(
+                        parts[1],
+                        seconds
+                );
 
-                boolean success =
-                        redis.expire(
-                                parts[1],
-                                seconds
-                        );
-
-                yield success ? "1" : "0";
+                yield "1";
             }
 
             case "TTL" ->
